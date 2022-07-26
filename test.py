@@ -3,21 +3,29 @@ from operator import itemgetter
 import pprint
 from types import NoneType
 from ytmusicapi import YTMusic
+import requests
 ytmusic = YTMusic('headers_auth.json')
 pp = pprint.PrettyPrinter(indent=4)
 
 
 listOfPlay = ytmusic.get_library_playlists(8)
+spotId = 12151119078
 
 
 def extractList(listOfL):
+    bigList = []
     for playL in listOfL:
-        if 'count' not in playL:
-            playL.update({'count': None})
-        pp.pprint(playL)
+        playL.update({'count': 200})
+        listId = playL['playlistId']
+        bigList.append(ytmusic.get_playlist(listId))
+    return bigList
+        
 
-extractList(listOfPlay)
+bigL = extractList(listOfPlay)
+outList = open('bigList.json', 'w')
+outList.write(json.dumps(bigL, sort_keys=True, indent=4))
 
+reqTrack = requests('post', )
 
 
 #print(json.dumps(listOfPlay, sort_keys=True, indent=4))
