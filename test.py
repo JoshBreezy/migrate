@@ -9,7 +9,6 @@ pp = pprint.PrettyPrinter(indent=4)
 
 
 listOfPlay = ytmusic.get_library_playlists(8)
-spotId = 12151119078
 
 
 def extractList(listOfL):
@@ -25,7 +24,7 @@ bigL = extractList(listOfPlay)
 outList = open('bigList.json', 'w')
 outList.write(json.dumps(bigL, sort_keys=True, indent=4))
 
-reqTrack = requests('post', )
+
 
 
 #print(json.dumps(listOfPlay, sort_keys=True, indent=4))
